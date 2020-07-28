@@ -1,0 +1,18 @@
+version: '3'
+services: 
+    web:
+        image: react
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - /app/node_modules
+            - .:/app
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+        stdin_open: true
+    tests:
+        image: react
+        volumes: 
+            - /app/node_modules
+            - .:/app
+        command: ["npm", "run", "test"]
